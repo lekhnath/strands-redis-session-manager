@@ -1,0 +1,5 @@
+line-length = 88
+
+[lint]
+extend-select = ["N", "E", "I", "C"]
+ignore = ["E501"]
