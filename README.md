@@ -34,8 +34,7 @@ from strands import Agent
 
 # Initialize Redis session manager
 session_manager = RedisSessionManager(
-    host="localhost",
-    port=6379
+    ...
 )
 
 # Create your agent with session management
