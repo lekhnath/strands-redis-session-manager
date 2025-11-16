@@ -11,7 +11,7 @@ A community package for Amazon Strands Agents that provides Redis-based session 
 - 🔄 Session persistence with Redis
 - 💾 Store and retrieve agent conversation history
 - 🚀 Simple integration with Strands Agents SDK
-- 🔧 Configurable Redis connection options
+- 🔧 Configurable
 - 🐍 Python 3.12+ support
 
 ## Requirements
@@ -34,11 +34,19 @@ from strands import Agent
 
 # Initialize Redis session manager
 session_manager = RedisSessionManager(
+    session_id='<session_id>',
+    redis_client=get_redis_client(),
+    ttl_seconds=600, # Optional[int]
     ...
 )
 
 # Create your agent with session management
-agent = Agent(model=your_model)
+agent = Agent(
+  agent_id='my-agent',
+  model=your_model,
+  session_manager=session_manager,
+  ...
+)
 
 # Use session manager to persist conversations
 # (See examples/ directory for detailed usage)
@@ -134,7 +142,7 @@ This project is licensed under the MIT License.
 
 ## Links
 
-- [Strands Agents SDK](https://github.com/awslabs/strands)
+- [Strands Agents SDK](https://strandsagents.com/)
 - [PyPI Package](https://pypi.org/project/strands-redis-session-manager/)
 - [Issue Tracker](https://github.com/lekhnath/strands-redis-session-manager/issues)
 

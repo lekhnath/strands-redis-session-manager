@@ -1,6 +1,8 @@
 .PHONY: examples tests
 
 SHELL=/bin/bash
+include .env
+export
 
 # Installation
 install:
@@ -37,11 +39,44 @@ test-cov-html:
 # Code quality
 lint:
 	@echo "Running linter..."
-	@ruff check src/ tests/
+	@@source .venv/bin/activate \
+		&& ruff check src/ tests/
 
 format:
 	@echo "Formatting code..."
-	@ruff format src/ tests/
+	@source .venv/bin/activate \
+		&& ruff format src/ tests/
+
+build:
+	@echo "Building dist package..."
+	@source .venv/bin/activate \
+		&& uv build
+
+clean:
+	@echo "Cleaning dist/"
+
+publish-test:
+	@echo "Publishing to test.pypi.org ..."
+	@source .venv/bin/activate \
+		&& export UV_PUBLISH_TOKEN=${UV_PUBLISH_TOKEN} \
+		&& uv publish --publish-url "https://test.pypi.org/legacy/"
+
+verify-install-test:
+	@echo "Verify installation from test repository ..."
+	@source .venv/bin/activate \
+	&& uv run --index "https://test.pypi.org/simple" --index-strategy unsafe-best-match --with "strands-redis-session-manager" --no-project -- python -c "import redis_session_manager; print(redis_session_manager.__version__)"
+
+
+publish:
+	@echo "Publishing to pypi.org ..."
+	@source .venv/bin/activate \
+		&& export UV_PUBLISH_TOKEN=${UV_PUBLISH_TOKEN} \
+		&& uv publish
+
+verify-install:
+	@echo "Verify installation from official repository ..."
+	@source .venv/bin/activate \
+	&& uv run --with "strands-redis-session-manager" --no-project -- python -c "import redis_session_manager; print(redis_session_manager.__version__)"
 
 # Examples
 run-basic:

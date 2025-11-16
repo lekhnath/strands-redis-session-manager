@@ -9,6 +9,7 @@ dependencies = [
     "strands-agents>=1.16.0",
 ]
 license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "lekhnath", email = "inboxlekhnath@gmail.com" }]
 keywords = ["strands", "agents", "session", "redis", "ai", "llm", "memory"]
 
@@ -20,10 +21,10 @@ Issues = "https://github.com/lekhnath/strands-redis-session-manager/issues"
 
 [dependency-groups]
 dev = [
-    "fakeredis>=2.24.0",
-    "pytest>=8.0.0",
-    "pytest-asyncio>=0.23.0",
-    "pytest-cov>=4.1.0",
-    "python-dotenv>=1.2.1",
-    "ruff>=0.14.5",
+  "fakeredis>=2.24.0",
+  "pytest>=8.0.0",
+  "pytest-asyncio>=0.23.0",
+  "pytest-cov>=4.1.0",
+  "python-dotenv>=1.2.1",
+  "ruff>=0.14.5",
 ]
