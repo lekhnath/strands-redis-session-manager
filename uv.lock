@@ -964,7 +964,7 @@ wheels = [
 
 [[package]]
 name = "strands-redis-session-manager"
-version = "0.1.2"
+version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "redis" },
